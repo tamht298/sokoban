@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sokoban</title>
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="./tailwind.css">
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="bg-white">
+    <div class="flex justify-center flex-col">
+        <div class="btn flex justify-center my-2">
+            <button onclick="loadRandomGame()" class="btn bg-teal-200 text-teal-600 hover:bg-teal-300 hover:text-teal-700 font-semibold px-2 py-1 rounded-md">Load new game</button>
+        </div>
+        <div id="board" class="flex justify-center mt-2">
+            
+        </div>
+    </div>
+    <script src="./main.js"></script>
+    <script src="./map.js"></script>
+  </body>
 </html>
