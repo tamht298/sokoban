@@ -10,6 +10,7 @@ let currentGame;
 
 function loadRandomGame() {
     currentGame = loadGame();
+    console.log(currentGame);
     let markup = '<table>';
     let rows = 10;
     let columns = 10;
@@ -38,19 +39,28 @@ function loadGame() {
     let rawData = boards[0].split(';');
     const len = rawData.length;
     let currentIndex = 0;
-    while (currentIndex + 1 < 2) {
-        let data = rawData[currentIndex].split('\n').filter(item => item.trim()!=='');
-        console.log(data);
+    while (currentIndex + 1 < len) {
+        let data = rawData[currentIndex].split('\n').filter(item => item.trim() !== '');
         let max = 0;
         data.shift();
         data.forEach(e => {
             if (e.length > max) {
                 max = e.length;
             }
-        })
-        console.log('max:', max);
+        });
+        let game = {
+            level: rawData[currentIndex + 1].split('\n')[0].trim(),
+            height: data.length,
+            maxWidth: max,
+            data: data,
+
+        };
+        games.push(game);
+
         currentIndex++;
 
     }
-    return boards;
+    
+    const gameNo = Math.floor(Math.random() * (games.length - 1));
+    return games[gameNo];
 }
