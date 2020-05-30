@@ -5,35 +5,93 @@ const BOX = '$';
 const BOX_ON_TARGET = '*';
 const PERSON_ON_TARGET = '+';
 const PATH = ' ';
+
+// Move
+const LEFT = 0;
+const RIGHT = 1;
+const UP = 2;
+const DOWN = 3;
+
 let games = [];
 let currentGame;
+let gameLoaded = false;
 
 function loadRandomGame() {
     currentGame = loadGame();
     console.log(currentGame);
+
+    renderGame(currentGame);
+}
+
+function renderGame(currentGame) {
+    if (!currentGame || !gameLoaded) return;
     let markup = '<table>';
     let rows = currentGame.height;
     let columns = currentGame.maxWidth;
-    let width = Math.floor((window.innerWidth - 100) / columns);
+    let width = Math.floor((window.innerWidth > 500 ? window.innerWidth - 100 : window.innerWidth) / columns);
     const height = window.innerHeight > 600 ? window.innerHeight - 100 : window.innerHeight;
     while (width * rows > height) {
         width -= 10;
     }
     for (let row = 0; row < rows; row++) {
-        markup += createRow(columns, width);
+        markup += createRow(row, columns, width, currentGame);
 
     }
     markup += '</table>'
     document.getElementById('board').innerHTML = markup;
-
 }
 
-function createRow(columns, width) {
+function createRow(row, columns, width, currentGame) {
     if (columns < 1) return;
     let markup = '<tr>';
     for (let col = 0; col < columns; col++) {
         markup += `<td style="width:${width}px; height:${width}px">`;
-        markup += `<img src="./wall.png" alt="hình" width="${width}" heigth="${width}" />`;
+        switch (currentGame.data[row][col]) {
+            case WALL:
+                {
+                    markup += `<img class="rounded" src="./images/wall.png" alt="wall" width="${width}" heigth="${width}" />`;
+
+                    break;
+                }
+            case TARGET:
+                {
+                    markup += `<img src="./images/target.png" alt="target" width="${width}" heigth="${width}" />`;
+
+                    break;
+                }
+            case PERSON:
+                {
+                    markup += `<img src="./images/person.png" alt="target" width="${width}" heigth="${width}" />`;
+
+                    break;
+                }
+            case PERSON_ON_TARGET:
+                {
+                    markup += `<img src="./images/person.png" alt="target" width="${width}" heigth="${width}" />`;
+
+                    break;
+                }
+            case BOX:
+                {
+                    markup += `<img src="./images/box.png" alt="target" width="${width}" heigth="${width}" />`;
+
+                    break;
+                }
+            case BOX_ON_TARGET:
+                {
+                    markup += `<img src="./images/box_on_target.jpeg" alt="target" width="${width}" heigth="${width}" />`;
+
+                    break;
+                }
+            case PATH:
+                {
+                    markup += `<img  class="rounded" src="./images/floor.png" alt="target" width="${width}" heigth="${width}" />`;
+
+                    break;
+                }
+            default:
+                break;
+        }
         markup += '</td>';
     }
     markup += '</tr>';
@@ -44,20 +102,48 @@ function loadGame() {
     let rawData = boards[0].split(';');
     const len = rawData.length;
     let currentIndex = 0;
+
     while (currentIndex + 1 < len) {
         let data = rawData[currentIndex].split('\n').filter(item => item.trim() !== '');
         let max = 0;
+        let targets = 0;
+        let boxes = 0;
+        let boxesOnTargets = 0;
+        let currentRow = 0;
+        let personRow = 0;
+        let personColumn = 0;
         data.shift();
-        data.forEach(e => {
-            if (e.length > max) {
-                max = e.length;
+        data.forEach((element) => {
+            if (element.length > max)
+                max = element.length;
+            targets += element.split(TARGET).length - 1;
+            targets += element.split(BOX_ON_TARGET).length - 1;
+            targets += element.split(PERSON_ON_TARGET).length - 1;
+            boxes += element.split(BOX).length - 1;
+            boxes += element.split(BOX_ON_TARGET).length - 1;
+
+            boxesOnTargets += element.split(BOX_ON_TARGET).length - 1;
+
+            let i = element.indexOf(PERSON);
+            if (i < 0) {
+                i = element.indexOf(PERSON_ON_TARGET);
+            } else {
+                personRow = currentRow;
+                personColumn = i
             }
+            currentRow++;
         });
         let game = {
             level: rawData[currentIndex + 1].split('\n')[0].trim(),
             height: data.length,
             maxWidth: max,
             data: data,
+            targets: targets,
+            boxes: boxes,
+            boxesOnTargets: boxesOnTargets,
+            personRow: personRow,
+            personColumn: personColumn
+
 
         };
         games.push(game);
@@ -67,5 +153,88 @@ function loadGame() {
     }
 
     const gameNo = Math.floor(Math.random() * (games.length - 1));
+    gameLoaded = true;
     return games[gameNo];
+}
+
+document.onkeydown = function(e) {
+    if (!gameLoaded) return;
+    switch (e.keyCode) {
+        case 37:
+            {
+                doMove(LEFT);
+                break;
+
+            }
+        case 38:
+            {
+                doMove(UP);
+                break;
+
+            }
+        case 39:
+            {
+                doMove(RIGHT);
+                break;
+
+            }
+        case 40:
+            {
+                doMove(DOWN);
+                break;
+
+            }
+    }
+
+}
+
+function doMove(direction) {
+    if (!currentGame || !gameLoaded) return;
+    let x0 = currentGame.personRow;
+    let y0 = currentGame.personColumn;
+
+    let x1 = 0;
+    let y1 = 0;
+    switch (direction) {
+        case LEFT:
+            {
+                y1--;
+                break;
+            }
+        case RIGHT:
+            {
+                y1++;
+                break;
+            }
+        case UP:
+            {
+                x1--
+                break;
+            }
+        case DOWN:
+            {
+                x1++
+                break;
+            }
+    }
+    if (currentGame.data[x0 + x1][y0 + y1] === PATH ||
+        currentGame.data[x0 + x1][y0 + y1] === TARGET) {
+        console.log(currentGame.data[x0 + x1][y0 + y1]);
+        currentGame.data[x0] =
+            currentGame.data[x0].substr(0, y0) +
+            (currentGame.data[x0][y0] === PERSON_ON_TARGET ? TARGET : PATH) +
+            currentGame.data[x0].substr(y0 + 1);
+
+        currentGame.data[x0 + x1] =
+            currentGame.data[x0 + x1].substr(0, y0 + y1) +
+            (currentGame.data[x0 + x1][y0 + y1] === TARGET ?
+                PERSON_ON_TARGET :
+                PERSON) +
+            currentGame.data[x0 + x1].substr(y0 + y1 + 1);
+        currentGame.personColumn = y0 + y1;
+        currentGame.personRow = x0 + x1;
+        console.log('new:', currentGame)
+        renderGame(currentGame);
+    }
+
 }

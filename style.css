@@ -1,8 +1,20 @@
-.container{
+body {
+    background-image: url('./images/background.jpg');
+}
+
+.container {
     display: flex;
     justify-content: center;
 }
 
-.btn:focus{
+.btn:focus {
     outline: none;
+}
+
+td {
+    padding: 0;
+}
+
+img {
+    display: block;
 }
