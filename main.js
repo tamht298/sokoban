@@ -12,10 +12,15 @@ function loadRandomGame() {
     currentGame = loadGame();
     console.log(currentGame);
     let markup = '<table>';
-    let rows = 10;
-    let columns = 10;
-    for (let i = 0; i < rows; i++) {
-        markup += createRow(columns);
+    let rows = currentGame.height;
+    let columns = currentGame.maxWidth;
+    let width = Math.floor((window.innerWidth - 100) / columns);
+    const height = window.innerHeight > 600 ? window.innerHeight - 100 : window.innerHeight;
+    while (width * rows > height) {
+        width -= 10;
+    }
+    for (let row = 0; row < rows; row++) {
+        markup += createRow(columns, width);
 
     }
     markup += '</table>'
@@ -23,12 +28,12 @@ function loadRandomGame() {
 
 }
 
-function createRow(columns) {
+function createRow(columns, width) {
     if (columns < 1) return;
     let markup = '<tr>';
-    for (let j = 0; j < columns; j++) {
-        markup += '<td style="width:40px; height:40px">';
-        markup += '<img src="./wall.png" alt="hình" width="40" heigth="40" />';
+    for (let col = 0; col < columns; col++) {
+        markup += `<td style="width:${width}px; height:${width}px">`;
+        markup += `<img src="./wall.png" alt="hình" width="${width}" heigth="${width}" />`;
         markup += '</td>';
     }
     markup += '</tr>';
@@ -60,7 +65,7 @@ function loadGame() {
         currentIndex++;
 
     }
-    
+
     const gameNo = Math.floor(Math.random() * (games.length - 1));
     return games[gameNo];
 }
