@@ -217,13 +217,15 @@ function doMove(direction) {
                 break;
             }
     }
+    // 1. Movement on blank block
     if (currentGame.data[x0 + x1][y0 + y1] === PATH ||
         currentGame.data[x0 + x1][y0 + y1] === TARGET) {
-        console.log(currentGame.data[x0 + x1][y0 + y1]);
+        // Update previous row (before moving)
         currentGame.data[x0] =
             currentGame.data[x0].substr(0, y0) +
             (currentGame.data[x0][y0] === PERSON_ON_TARGET ? TARGET : PATH) +
             currentGame.data[x0].substr(y0 + 1);
+        // Update current row (after moving)
 
         currentGame.data[x0 + x1] =
             currentGame.data[x0 + x1].substr(0, y0 + y1) +
@@ -231,10 +233,43 @@ function doMove(direction) {
                 PERSON_ON_TARGET :
                 PERSON) +
             currentGame.data[x0 + x1].substr(y0 + y1 + 1);
+        // update position of person
         currentGame.personColumn = y0 + y1;
         currentGame.personRow = x0 + x1;
-        console.log('new:', currentGame)
         renderGame(currentGame);
+    }
+
+    // 2. Pushing the boxes
+    else if (currentGame.data[x0 + x1][y0 + y1] === BOX || currentGame.data[x0 + x1][y0 + y1] === BOX_ON_TARGET) {
+        if (currentGame.data[x0 + x1 * 2][y0 + y1 * 2] === PATH || currentGame.data[x0 + x1 * 2][y0 + y1 * 2] === TARGET) {
+            if (currentGame.data[y0 + y1 * 2][x0 + x1 * 2] === TARGET) {
+                currentGame.boxesOnTargets++;
+            }
+            if (currentGame.data[y0 + y1][x0 + x1] === BOX_ON_TARGET) {
+                currentGame.boxesOnTargets--;
+            }
+            // 2.1 update previous position
+            currentGame.data[x0] = currentGame.data[x0].substr(0, y0) +
+                (currentGame.data[x0][y0] === PERSON_ON_TARGET ? TARGET : PATH) +
+                currentGame.data[x0].substr(y0 + 1);
+            // 2.2 update current row (after moving)
+            currentGame.data[x0 + x1] = currentGame.data[x0 + x1].substr(0, y0 + y1) +
+                (currentGame.data[x0 + x1][y0 + y1] === BOX_ON_TARGET ? PERSON_ON_TARGET : PERSON) +
+                currentGame.data[x0 + x1].substr(y0 + y1 + 1);
+            // 2.3 update box position
+            currentGame.data[x0 + x1 * 2] = currentGame.data[x0 + x1 * 2].substr(0, y0 + y1 * 2) +
+                (currentGame.data[x0 + x1 * 2][y0 + y1 * 2] === TARGET ? BOX_ON_TARGET : BOX) +
+                currentGame.data[x0 + x1 * 2].substr(y0 + y1 * 2 + 1);
+            // 2.4 update position of person
+            currentGame.personColumn = y0 + y1;
+            currentGame.personRow = x0 + x1;
+            renderGame(currentGame);
+            if (currentGame.boxesOnTargets === currentGame.boxes) {
+                // Complete chalenge
+                // do something
+            }
+        }
+
     }
 
 }
