@@ -5,7 +5,7 @@ const BOX = '$';
 const BOX_ON_TARGET = '*';
 const PERSON_ON_TARGET = '+';
 const PATH = ' ';
-let lv=0;
+let lv=1;
 // Move
 const LEFT = 0;
 const RIGHT = 1;
