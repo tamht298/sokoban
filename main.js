@@ -18,7 +18,6 @@ let gameLoaded = false;
 
 function loadRandomGame() {
     currentGame = loadGame(lv);
-    console.log(currentGame.data)
     renderGame(currentGame);
 }
 
