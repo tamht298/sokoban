@@ -5,7 +5,7 @@ const BOX = '$';
 const BOX_ON_TARGET = '*';
 const PERSON_ON_TARGET = '+';
 const PATH = ' ';
-
+let lv=0;
 // Move
 const LEFT = 0;
 const RIGHT = 1;
@@ -17,9 +17,8 @@ let currentGame;
 let gameLoaded = false;
 
 function loadRandomGame() {
-    currentGame = loadGame();
-    console.log(currentGame);
-
+    currentGame = loadGame(lv);
+    console.log(currentGame.data)
     renderGame(currentGame);
 }
 
@@ -28,8 +27,8 @@ function renderGame(currentGame) {
     let markup = '<table>';
     let rows = currentGame.height;
     let columns = currentGame.maxWidth;
-    let width = Math.floor((window.innerWidth > 500 ? window.innerWidth - 100 : window.innerWidth) / columns);
-    const height = window.innerHeight > 600 ? window.innerHeight - 100 : window.innerHeight;
+    let width = Math.floor((window.innerWidth > 500 ? window.innerWidth - 140 : window.innerWidth) / columns);
+    const height = window.innerHeight > 500 ? window.innerHeight - 140 : window.innerHeight;
     while (width * rows > height) {
         width -= 10;
     }
@@ -44,11 +43,13 @@ function renderGame(currentGame) {
 function createRow(row, columns, width, currentGame) {
     if (columns < 1) return;
     let markup = '<tr>';
+    let hitWall= false;
     for (let col = 0; col < columns; col++) {
         markup += `<td style="width:${width}px; height:${width}px">`;
         switch (currentGame.data[row][col]) {
             case WALL:
                 {
+                    hitWall=true;
                     markup += `<img class="rounded" src="./images/wall.png" alt="wall" width="${width}" heigth="${width}" />`;
 
                     break;
@@ -85,6 +86,7 @@ function createRow(row, columns, width, currentGame) {
                 }
             case PATH:
                 {
+                    if(hitWall)
                     markup += `<img  class="rounded" src="./images/floor.png" alt="target" width="${width}" heigth="${width}" />`;
 
                     break;
@@ -98,7 +100,7 @@ function createRow(row, columns, width, currentGame) {
     return markup;
 }
 
-function loadGame() {
+function loadGame(lv) {
     let rawData = boards[0].split(';');
     const len = rawData.length;
     let currentIndex = 0;
@@ -154,7 +156,7 @@ function loadGame() {
 
     const gameNo = Math.floor(Math.random() * (games.length - 1));
     gameLoaded = true;
-    return games[gameNo];
+    return games[gameNo+lv];
 }
 
 document.onkeydown = function(e) {
@@ -242,10 +244,10 @@ function doMove(direction) {
     // 2. Pushing the boxes
     else if (currentGame.data[x0 + x1][y0 + y1] === BOX || currentGame.data[x0 + x1][y0 + y1] === BOX_ON_TARGET) {
         if (currentGame.data[x0 + x1 * 2][y0 + y1 * 2] === PATH || currentGame.data[x0 + x1 * 2][y0 + y1 * 2] === TARGET) {
-            if (currentGame.data[y0 + y1 * 2][x0 + x1 * 2] === TARGET) {
+            if (currentGame.data[x0 + x1 * 2][y0 + y1 * 2] === TARGET) {
                 currentGame.boxesOnTargets++;
             }
-            if (currentGame.data[y0 + y1][x0 + x1] === BOX_ON_TARGET) {
+            if (currentGame.data[x0+x1][y0 + y1] === BOX_ON_TARGET) {
                 currentGame.boxesOnTargets--;
             }
             // 2.1 update previous position
@@ -267,6 +269,9 @@ function doMove(direction) {
             if (currentGame.boxesOnTargets === currentGame.boxes) {
                 // Complete chalenge
                 // do something
+                lv++;
+                document.getElementById('level').innerHTML= `Level: ${lv}`;
+                loadRandomGame(lv);
             }
         }
 

@@ -11,9 +11,10 @@
 </head>
 
 <body class="bg-white">
-    <div class="flex justify-center flex-col">
-        <div class="btn flex justify-center my-2">
-            <button onclick="loadRandomGame()" class="btn bg-teal-200 text-teal-600 hover:bg-teal-300 hover:text-teal-700 font-semibold px-2 py-1 rounded-md">Load new game</button>
+    <div class="flex justify-center items-center flex-col">
+        <div class="btn flex justify-center my-8">
+            <button onclick="loadRandomGame()" class="btn bg-indigo-500 bg-opacity-25 text-white mx-2 hover:bg-indigo-800 border-2 border-white hover:text-white font-semibold px-4 py-2 rounded-md">New game</button>
+            <div id="level" class="mx-2 flex items-center text-white">Level: 0</div>
         </div>
         <div id="board" class="flex 0 justify-center mt-2">
 

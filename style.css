@@ -1,7 +1,11 @@
 body {
     background-image: url('./images/background.jpg');
+    font-family: dlxfont;
 }
-
+@font-face{
+    font-family: dlxfont;
+    src: url('./fonts/dlxfont.ttf');
+}
 .container {
     display: flex;
     justify-content: center;
