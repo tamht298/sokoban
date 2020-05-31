@@ -8,18 +8,34 @@
     <link rel="stylesheet" href="./tailwind.css">
     <link rel="stylesheet" href="./style.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./font-awesome-4.7.0/css/font-awesome.min.css">
     <meta property="twitter:image" content="https://dz-sokoban.netlify.app/images/thumbnail.png" />
 </head>
 
 <body class="bg-white">
+
     <div class="flex justify-center items-center flex-col">
+        
         <div class="btn flex justify-center my-8">
-            <button onclick="loadRandomGame()" class="btn bg-indigo-500 bg-opacity-25 text-white mx-2 hover:bg-indigo-800 border-2 border-white hover:text-white font-semibold px-4 py-2 rounded-md">New game</button>
+            <div class="flex items-center text-white mx-5">
+                <a href="https://github.com/tamht298/sokoban" class="tooltip flex" target="_blank">
+                    <p class="tooltip-text bg-black text-xs flex items-center opacity-75 mr-2 rounded-md">Star for me!</p>
+
+                    <span class="text-4xl"><i class="fa fa-github"></i></span>
+
+                </a>
+
+            </div>
+
+            <button onclick="loadRandomGame()"
+                class="btn bg-indigo-500 bg-opacity-25 text-white mx-2 hover:bg-indigo-800 border-2 border-white hover:text-white font-semibold px-4 py-2 rounded-md">New
+                game</button>
             <div id="level" class="mx-2 flex items-center text-white">Level: 0</div>
         </div>
         <div id="board" class="flex 0 justify-center mt-2">
 
         </div>
+
     </div>
     <script src="./main.js"></script>
     <script src="./map.js"></script>

@@ -2,10 +2,12 @@ body {
     background-image: url('./images/background.jpg');
     font-family: dlxfont;
 }
-@font-face{
+
+@font-face {
     font-family: dlxfont;
     src: url('./fonts/dlxfont.ttf');
 }
+
 .container {
     display: flex;
     justify-content: center;
@@ -21,4 +23,15 @@ td {
 
 img {
     display: block;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    text-align: center;
+    padding: 0px 12px;
+    z-index: 100;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
 }
