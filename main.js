@@ -79,7 +79,7 @@ function createRow(row, columns, width, currentGame) {
                 }
             case BOX_ON_TARGET:
                 {
-                    markup += `<img src="./images/box_on_target.jpeg" alt="target" width="${width}" heigth="${width}" />`;
+                    markup += `<img src="./images/box_on_target.webp" alt="target" width="${width}" heigth="${width}" />`;
 
                     break;
                 }
