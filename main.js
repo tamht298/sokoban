@@ -49,31 +49,31 @@ function createRow(row, columns, width, currentGame) {
             case WALL:
                 {
                     hitWall=true;
-                    markup += `<img class="rounded" src="./images/wall.png" alt="wall" width="${width}" heigth="${width}" />`;
+                    markup += `<img class="rounded" src="./images/wall.webp" alt="wall" width="${width}" heigth="${width}" />`;
 
                     break;
                 }
             case TARGET:
                 {
-                    markup += `<img src="./images/target.png" alt="target" width="${width}" heigth="${width}" />`;
+                    markup += `<img src="./images/target.webp" alt="target" width="${width}" heigth="${width}" />`;
 
                     break;
                 }
             case PERSON:
                 {
-                    markup += `<img src="./images/person.png" alt="target" width="${width}" heigth="${width}" />`;
+                    markup += `<img src="./images/person.webp" alt="target" width="${width}" heigth="${width}" />`;
 
                     break;
                 }
             case PERSON_ON_TARGET:
                 {
-                    markup += `<img src="./images/person.png" alt="target" width="${width}" heigth="${width}" />`;
+                    markup += `<img src="./images/person.webp" alt="target" width="${width}" heigth="${width}" />`;
 
                     break;
                 }
             case BOX:
                 {
-                    markup += `<img src="./images/box.png" alt="target" width="${width}" heigth="${width}" />`;
+                    markup += `<img src="./images/box.webp" alt="target" width="${width}" heigth="${width}" />`;
 
                     break;
                 }
@@ -86,7 +86,7 @@ function createRow(row, columns, width, currentGame) {
             case PATH:
                 {
                     if(hitWall)
-                    markup += `<img  class="rounded" src="./images/floor.png" alt="target" width="${width}" heigth="${width}" />`;
+                    markup += `<img  class="rounded" src="./images/floor.webp" alt="target" width="${width}" heigth="${width}" />`;
 
                     break;
                 }
