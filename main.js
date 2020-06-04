@@ -128,7 +128,7 @@ function loadGame(lv) {
             let i = element.indexOf(PERSON);
             if (i < 0) {
                 i = element.indexOf(PERSON_ON_TARGET);
-            } else {
+            } if(i>=0) {
                 personRow = currentRow;
                 personColumn = i
             }
