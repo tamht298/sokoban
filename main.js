@@ -15,7 +15,10 @@ const DOWN = 3;
 let games = [];
 let currentGame;
 let gameLoaded = false;
-loadRandomGame=() =>{
+
+
+
+function loadRandomGame(){
     currentGame = loadGame(lv);
     console.log(currentGame.data)
     renderGame(currentGame);
