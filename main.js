@@ -15,9 +15,9 @@ const DOWN = 3;
 let games = [];
 let currentGame;
 let gameLoaded = false;
-
-function loadRandomGame() {
+loadRandomGame=() =>{
     currentGame = loadGame(lv);
+    console.log(currentGame.data)
     renderGame(currentGame);
 }
 
@@ -218,6 +218,9 @@ function doMove(direction) {
                 break;
             }
     }
+
+    console.log(currentGame.data)
+    console.log('[x0 + x1][y0 + y1]',(x0 + x1), (y0 + y1))
     // 1. Movement on blank block
     if (currentGame.data[x0 + x1][y0 + y1] === PATH ||
         currentGame.data[x0 + x1][y0 + y1] === TARGET) {
