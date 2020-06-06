@@ -1,7 +1,7 @@
 # Sokoban
 > Sokoban (倉庫番, sōko-ban, "warehouse keeper") is a puzzle video game in which the player pushes crates or boxes around in a warehouse, trying to get them to storage locations. ([Wikipedia][wiki])
 <p align="center">
-    <img src="https://dz-sokoban.netlify.app/favicon.ico"
+    <img src="https://github.com/tamht298/sokoban/blob/master/logo.png"
         height="130">
 </p>
 
