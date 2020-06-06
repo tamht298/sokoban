@@ -7,7 +7,6 @@
 
 [![GitHub issues][github-issues-image]][github-issues-url]
 [![GitHub forks][github-forks-image]][github-forks-url]
-[![Github stars][github-stars-image]][github-stars-url]
 [![GitHub license][github-license-image]][github-license-url]
 [![Twitter tweet][twitter-image]][twitter-url]
 
@@ -55,8 +54,6 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 [github-issues-image]: https://img.shields.io/github/issues/tamht298/sokoban
 [github-issues-url]: https://github.com/tamht298/sokoban/issues
 [github-forks-image]: https://img.shields.io/github/forks/tamht298/sokoban
-[github-forks-url]: https://github.com/tamht298/sokoban/forks
-[github-stars-image]: https://img.shields.io/github/stars/tamht298/sokoban
-[github-stars-url]: https://github.com/tamht298/sokoban/stars
+[github-forks-url]: https://github.com/tamht298/sokoban/fork
 [twitter-image]: https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Ftamht298%2Fsokoban
 [twitter-url]: https://twitter.com/httam298
