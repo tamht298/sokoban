@@ -1,12 +1,18 @@
 # Sokoban
 > Sokoban (倉庫番, sōko-ban, "warehouse keeper") is a puzzle video game in which the player pushes crates or boxes around in a warehouse, trying to get them to storage locations. ([Wikipedia][wiki])
+<p align="center">
+    <img src="https://dz-sokoban.netlify.app/favicon.ico"
+        height="130">
+</p>
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+[![GitHub issues][github-issues-image]][github-issues-url]
+[![GitHub forks][github-forks-image]][github-forks-url]
+[![Github stars][github-stars-image]][github-stars-url]
+[![GitHub license][github-license-image]][github-license-url]
+[![Twitter tweet][twitter-image]][twitter-url]
 
 This game makes you relax and improves your brain's logic.
-![Preview image][preview-project]]
+![Preview image][preview-project]
 
 
 ## Development setup
@@ -42,10 +48,15 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 5. Create a new Pull Request
 
 <!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/datadog-metrics.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/datadog-metrics
-[npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
 [wiki]: https://en.wikipedia.org/wiki/Sokoban
 [preview-project]: https://raw.githubusercontent.com/tamht298/sokoban/master/images/thumbnail.png
+[github-license-image]: https://img.shields.io/github/license/tamht298/sokoban
+[github-license-url]: https://github.com/tamht298/sokoban/blob/master/LICENSE
+[github-issues-image]: https://img.shields.io/github/issues/tamht298/sokoban
+[github-issues-url]: https://github.com/tamht298/sokoban/issues
+[github-forks-image]: https://img.shields.io/github/forks/tamht298/sokoban
+[github-forks-url]: https://github.com/tamht298/sokoban/forks
+[github-stars-image]: https://img.shields.io/github/stars/tamht298/sokoban
+[github-stars-url]: https://github.com/tamht298/sokoban/stars
+[twitter-image]: https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Ftamht298%2Fsokoban
+[twitter-url]: https://twitter.com/httam298
