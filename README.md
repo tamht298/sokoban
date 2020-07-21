@@ -1,7 +1,7 @@
 # Sokoban
 > Sokoban (倉庫番, sōko-ban, "warehouse keeper") is a puzzle video game in which the player pushes crates or boxes around in a warehouse, trying to get them to storage locations. ([Wikipedia][wiki])
 <p align="center">
-    <img src="https://github.com/tamht298/sokoban/blob/master/logo.png"
+    <img src="https://github.com/matth0998/sokoban/blob/master/logo.png"
         height="130">
 </p>
 
@@ -32,7 +32,7 @@ git clone https://github.com/tamht298/sokoban.git
 
 ## Meta
 
-Thanh Tam Huynh – [@httam298](https://twitter.com/httam298) – tamht298@gmail.com
+Thanh Tam Huynh – [@httam298](https://twitter.com/matth0998) – tamht298@gmail.com
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
@@ -56,4 +56,4 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 [github-forks-image]: https://img.shields.io/github/forks/tamht298/sokoban
 [github-forks-url]: https://github.com/tamht298/sokoban/fork
 [twitter-image]: https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Ftamht298%2Fsokoban
-[twitter-url]: https://twitter.com/httam298
+[twitter-url]: https://twitter.com/matth0998
