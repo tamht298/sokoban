@@ -10,7 +10,7 @@
 [![GitHub license][github-license-image]][github-license-url]
 [![Twitter tweet][twitter-image]][twitter-url]
 
-This game makes you relax and improves your brain's logic.
+This game makes you relaxes and improves your brain's logic.
 ![Preview image][preview-project]
 
 
